@@ -37,7 +37,6 @@ void mouseClicked() {
  //evento CLIC AC
   } else if ( estado.equals("PTesla") && dist(mouseX, mouseY, width/8*6, height/4 *2) <= 45) { 
     estado = ("AC");
-
 }
 }
 
@@ -50,4 +49,3 @@ void mouseMoved(){
 }
 }
 }
-//}
