@@ -20,10 +20,4 @@ void keyPressed() {
  }else if( key == 'T' && estado.equals("stay") || key == 't' && estado.equals("stay") ){
     estado = "trans";
   }
-
-//evento S quedarte en el 2020
- if( key == 'S' && estado.equals("futuro") || key == 's' && estado.equals("futuro") ){
-    estado = "stay";
-  }
-
  }
