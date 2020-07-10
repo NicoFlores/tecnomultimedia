@@ -1,7 +1,10 @@
 //DIAGRAMA DE ESTADOS
 
 String estado;
-PImage Inicio, pasado, futuro, tesla, edisson, casaEdisson, labTesla, bombilla, bobina, alterna, continua, portalTra, portalCalle,exploDC, exploAC, rayosBobina, rayosMouse ;
+//imagenes pasado
+PImage Inicio, pasado, futuro, tesla, edisson, casaEdisson, labTesla, bombilla, bobina, alterna, continua, portalTra, portalCalle,exploDC, exploAC, rayosBobina, rayosMouse;
+//imagenes futuro
+PImage error, policia, calle ;
 PFont tiempos, consola, creditosR,creditosL, viaje ;
 int cuadro, letras;
 float tinte;
@@ -42,7 +45,10 @@ void setup() {
   //rayos
   rayosBobina = loadImage ( "rayos1.png" );
   rayosMouse = loadImage ( "rayos2.png" );
-  
+   //futuro
+  error = loadImage ( "error.jpg" );
+  policia = loadImage ( "policias.jpg" );
+  calle = loadImage ( "calle.jpg" );
   
   // FUENTES
   tiempos = loadFont ( "Inicio.vlw" );
@@ -80,7 +86,7 @@ void draw() {
     textAlign(LEFT, TOP);
     textFont(consola);
     fill(#0CF037);
-    text("Hola viajero, listo para un aventura en el tiempo, deberas elegir a donde desas ir , PASADO o FUTURO", 25, 445, width-5, height-5);
+    text("Hola viajero, listo para un aventura en el tiempo, deberas elegir a donde deseas ir , PASADO o FUTURO", 25, 445, width-5, height-5);
     textAlign(RIGHT, BOTTOM);
     fill(#0CF037);
     text("Cliquea en pantalla la opcion adecuada", width-25, height-25);
@@ -137,7 +143,7 @@ void draw() {
     textAlign(LEFT, TOP);
     textFont(consola);
     fill(#0CF037);
-    text("Haz llegado a 1880 y solo dos lugares tienen la tecnología necesaria para abrir el portal de vuelta, la casa de THOMAS EDISSON y el laboratorio de NIKOLA TESLA.", 25, 445, width-5, height-5);
+    text("Haz llegado a 1880 y solo dos lugares tienen la tecnología necesaria para abrir el portal de vuelta, la casa de THOMAS EDISSON y el laboratorio de NIKOLA TESLA.", 25, 445, width-50, height-25);
     textAlign(RIGHT, BOTTOM);
     fill(#0CF037);
     text("Cliquea sobre tu opción", width-25, height-25);
@@ -157,7 +163,7 @@ void draw() {
     textAlign(LEFT, TOP);
     textFont(consola);
     fill(#0CF037);
-    text("Haz llegado a la casa de THOMAS EDISSON, es conocido por no tener un muy buen humor, intenta agradarle o no molestarlo demasiado.", 25, 15, width-50, height-5);
+    text("Ahora estás en la casa de THOMAS EDISSON, él es conocido por no tener un muy buen humor, intenta agradarle o no molestarlo demasiado.", 25, 15, width-50, height-5);
     textAlign(RIGHT, BOTTOM);
     fill(#0CF037);
     text("Cliquea sobre tu opción", width-25, 135);
@@ -202,7 +208,7 @@ void draw() {
     textAlign(LEFT, TOP);
     textFont(consola);
     fill(#0CF037);
-    text("THOMAS EDISSON es conocido por inventar la bombilla, mira inovación tiene para mostrarte en su invento.", 25, 15, width-50, height-5);
+    text("THOMAS EDISSON es conocido por inventar la bombilla, mira que inovación tiene para mostrarte en su invento.", 25, 15, width-50, height-5);
     textAlign(RIGHT, BOTTOM);
     fill(#0CF037);
     text("Cliquea sobre la BOMBILLA", width-25, 135);
@@ -244,10 +250,6 @@ void draw() {
     textFont(viaje);
     fill(255);
     text("Viaje en el Tiempo 2000", width/2 , height/8*6.5 );
-    /*background(0);
-    imageMode(CENTER);
-    image(exploDC, width/4, height/8*7 -50 , 300, 200);
-    image(portalCalle, width/4, height/2 - 25, 200, 400);*/
     
     //texto en consola 
     textSize(20);
@@ -273,7 +275,7 @@ void draw() {
     textAlign(LEFT, TOP);
     textFont(consola);
     fill(#0CF037);
-    text("Haz llegado al laboratorio de NIKOLA TESLA, el inventor de la AC, prueba usar su energía estable para reactivar el portal", 25, 15, width-50, height-5);
+    text("bienvenido al laboratorio de NIKOLA TESLA, el inventor de la AC, prueba usar su energía estable para reactivar el portal", 25, 15, width-50, height-5);
     textAlign(RIGHT, BOTTOM);
     fill(#0CF037);
     text("Cliquea sobre tu opción", width-25, 135);
@@ -398,30 +400,188 @@ void draw() {
     textAlign(RIGHT, BOTTOM);
     fill(#0CF037);
     text("Pulsa ENTER para volver al inicio", width-25, height-25);  
-
-
-} else if ( estado.equals("desconocido") ) {
-    
-    
-      
  
- 
+//----------------------------------------------------FUTURO---------------------------------------------------------------- 
  
  } else if ( estado.equals("futuro") ) {  //evento FUTURO
+    // fondo 2020
+    imageMode(CORNER);
+    image(futuro, 0, 0, width+300, height );
+    // prueba de color
+    imageMode(CENTER);
+    image(error, width/2 , height/3*1 , width/2 , height/2 );
+    
+    //consola 
+    rectMode(CORNER);
+    noStroke();
+    fill(100);
+    rect(0, 420, width, height);
+    fill(0, 50);
+    rect(20, 440, width-40, 140, 10);
+    //texto en consola 
+    textSize(17);
+    textAlign(LEFT, TOP);
+    textFont(consola);
+    fill(#0CF037);
+    text("Por falta de energia has caido en el 2020, un extraño virus tiene a toda la población en casa, corres peligro de entontrarte con tu YO del futuro y el portal solo puede realizar un viaje.", 25, 445, width-50, height-25);
+    textAlign(RIGHT, BOTTOM);
+    textSize(17);
+    fill(#0CF037);
+    text("Pulsa (F) para reparar el portal o (S) para quedarte en el 2020", width-25, height-25);
+    
+  
+} else if ( estado.equals("fix") ) {
+ // fondo 2020
+    imageMode(CORNER);
     image(futuro, 0, 0, width+300, height );
     
+    imageMode(CENTER);
+    image(portalTra, width/8*4.15, height/3 + 15, 1100, 750);
     
-  } else if ( estado.equals("desconocido") ) {
+    // CREDITOS 
+    fill(0, 50);
+    rectMode(CORNER);
+    rect(0,0, width, height);
+    textSize(20);
+    textAlign(RIGHT, TOP);
+    textFont(creditosL);
+    fill(255,255);
+    text("Realizacíon \nProducción \n Coordinación \nImagenes \nTipografías \n\nSoporte ", width/2 , height/10 );
+    textSize(20);
+    textAlign(LEFT, TOP);
+    textFont(creditosR);
+    fill(255,255);
+    text("Nico Flores\nTecnoMultimedia1\nMatias Jauregui Lorda\nGoogle Images\nDaFont\nProcessing Fundation\nProcessing Fundation", width/2 , height/10 );
+    
+    //consola 
+    rectMode(CORNER);
+    noStroke();
+    fill(100);
+    rect(0, 420, width, height);
+    fill(0, 50);
+    rect(20, 440, width-40, 140, 10);
+    //texto en consola 
+    textSize(17);
+    textAlign(LEFT, TOP);
+    textFont(consola);
+    fill(#0CF037);
+    text("El portal está reparado, pero solo resitirá el viaje de regreso, debes volver y alertar a todos sobre este virus, BUENA SUERTE VIAJERO.", 25, 445, width-50, height-25);
+    textAlign(RIGHT, BOTTOM);
+    textSize(17);
+    fill(#0CF037);
+    text("Pulsa ENTER para volver al inicio", width-25, height-25);
+
+
+} else if ( estado.equals("stay") ) {
   
+  //fondo 2020
+    imageMode(CORNER);
+    image(policia, -100, 0, width+100, height );
+  
+  //consola 
+    rectMode(CORNER);
+    noStroke();
+    fill(100);
+    rect(0, 420, width, height);
+    fill(0, 50);
+    rect(20, 440, width-40, 140, 10);
+    //texto en consola 
+    textSize(17);
+    textAlign(LEFT, TOP);
+    textFont(consola);
+    fill(#0CF037);
+    text("La POLICIA te ha detenido por no llevar barbijo, el virus podría estar en cualquer parte, debes elegir entre CORRER o DEJAR QUE TE DETENGAN", 25, 445, width-50, height-25);
+    textAlign(RIGHT, BOTTOM);
+    textSize(17);
+    fill(#0CF037);
+    text("Pulsa (R) para correr o (T) para cooperar con la policía", width-25, height-25);
+    
+} else if ( estado.equals("run") ) {
+    // fondo 2020
+    imageMode(CORNER);
+    image(futuro, 0, 0, width+300, height );
+    
+    imageMode(CENTER);
+    image(portalTra, width/8*4.15, height/3 + 15, 1100, 750);
+    
+    // CREDITOS 
+    fill(0, 50);
+    rectMode(CORNER);
+    rect(0,0, width, height);
+    textSize(20);
+    textAlign(RIGHT, TOP);
+    textFont(creditosL);
+    fill(255);
+    text("Realizacíon \nProducción \n Coordinación \nImagenes \nTipografías \n\nSoporte ", width/2 , height/10 );
+    textSize(20);
+    textAlign(LEFT, TOP);
+    textFont(creditosR);
+    fill(255);
+    text("Nico Flores\nTecnoMultimedia1\nMatias Jauregui Lorda\nGoogle Images\nDaFont\nProcessing Fundation\nProcessing Fundation", width/2 , height/10 );
+    
+    //consola 
+    rectMode(CORNER);
+    noStroke();
+    fill(100);
+    rect(0, 420, width, height);
+    fill(0, 50);
+    rect(20, 440, width-40, 140, 10);
+    //texto en consola 
+    textSize(17);
+    textAlign(LEFT, TOP);
+    textFont(consola);
+    fill(#0CF037);
+    text("El portal ahora tiene carga para un viaje de regreso, no dejes que la policia te atrape, BUENA SUERTE VIAJERO.", 25, 445, width-50, height-25);
+    textAlign(RIGHT, BOTTOM);
+    textSize(17);
+    fill(#0CF037);
+    text("Pulsa ENTER para volver al inicio", width-25, height-25);
+    
+} else if ( estado.equals("trans") ) {
+    
+     // fondo 2020
+    imageMode(CORNER);
+    image(calle, 0, 0, width, height );
+    
+ 
+    imageMode(CENTER);
+    image(portalCalle, width/8, height/5*2 - 25, 200, 400);
+    
+     // CREDITOS 
+    fill(0, 50);
+    rectMode(CORNER);
+    rect(0,0, width, height);
+    textSize(20);
+    textAlign(RIGHT, TOP);
+    textFont(creditosL);
+    fill(255);
+    text("Realizacíon \nProducción \n Coordinación \nImagenes \nTipografías \n\nSoporte ", width/8*4.5 , height/10 );
+    textSize(20);
+    textAlign(LEFT, TOP);
+    textFont(creditosR);
+    fill(255);
+    text("Nico Flores\nTecnoMultimedia1\nMatias Jauregui Lorda\nGoogle Images\nDaFont\nProcessing Fundation\nProcessing Fundation", width/8*4.5 , height/10 );
     
     
-  } else if ( estado.equals("desconocido") ) {
-    
-    
+    //consola 
+    rectMode(CORNER);
+    noStroke();
+    fill(100);
+    rect(0, 420, width, height);
+    fill(0, 50);
+    rect(20, 440, width-40, 140, 10);
+    //texto en consola 
+    textSize(17);
+    textAlign(LEFT, TOP);
+    textFont(consola);
+    fill(#0CF037);
+    text("La policia quiere enviarte de vuelta a casa o llevarte a prisión y un portal aparece sorpesivamente en la calle entra lo antes posible.", 25, 445, width-50, height-25);
+    textAlign(RIGHT, BOTTOM);
+    textSize(17);
+    fill(#0CF037);
+    text("Pulsa ENTER para entrar al portal", width-25, height-25);
     
   }
-
-
 
   println( mouseX + " / " + mouseY);
 }
