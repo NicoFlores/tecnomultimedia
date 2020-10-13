@@ -18,6 +18,9 @@ class Policia{
   // choques()
   // --lanza choques un una direccion determinada 
 
+  // recargar()
+  // --mueve al personaje a las cargas y lo regresa en un timepo determinado
+  
   // moverIzq()
   // --mueve el personaje a la izquierda 
  
