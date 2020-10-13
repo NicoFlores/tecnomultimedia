@@ -7,19 +7,15 @@
 /* PROPUESTA 
  
 Como parte de la aventura gráfica, el viajero debe volver a casa y evitando a la 
-policia que quiere detenerlo por no llevar barbijo en en 2020
+policia que quiere detenerlo por no llevar barbijo en en 2020.
 
 La policia no quiere dejarlo entrar al portal para que regrese a casa y le arrojan
-choques electricos que reducen su vida mientras el se defiende con rayos lacer que
-desorientan y retan vida al policia.
+choques electricos que reducen su vida mientras los esquiba y trata de que ninguno 
+lo toque ni que la policia lo atrape.
 
-El viajero no debe dejar morir al policia y debe detener el tiempo en el momento
-indicado para poder entrar al trasbordador y no afectar al entorno.
-
-La opción se activa cuando el policia tiene menos de la mitad de vida y dura pocos
-segundos.
- 
- 
+Cuando la policia agote sus recursos, el viajero puede detener el timepo un momento
+he intentar ingresar al portal antes de que la policia se de cuenta.
+  
  */
 
 //declaro la clase juego
