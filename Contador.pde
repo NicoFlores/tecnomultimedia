@@ -7,6 +7,7 @@ class Contador{
   color consola, texto;
   PFont letras;
   int n;
+  String [] saludo = new String [3], orden = new String [4];
   
   
   
@@ -23,7 +24,20 @@ class Contador{
     texto = color(#0CF037);
     letras = loadFont ("letra1.vlw");
     n = 20;
-  }
+      
+     //texto de la consola segun el estado
+      saludo[0] ="Un virus a ingresado al sistema, debes destruirlos, cuidado con los violetas, no son virus sino portadores de datos del sistema";
+      saludo[1] ="Borraste datos importantes del sistema, quedarás atrapado en el tiempo";
+      saludo[2] ="Mataste a todos los virus, tu viaje continuará";
+      
+     //texto de orden segun el estado   
+      orden[0] ="Pulsa ESPACIO para iniciar";
+      orden[1] ="Te quedan "+ n + " virus por eliminar";
+      orden[2] ="Pulsa ESPACIO para volver a intentar";
+      orden[3] ="Pulsa ENTER para continuar";
+
+
+}
 
   // -----------------------METODOS-----------------------------
   // (funciones) #acciones
@@ -39,23 +53,10 @@ class Contador{
     textAlign(LEFT, TOP);
     textFont(letras, 25);
     fill(#0CF037);
-    text("Un virus a ingresado al sistema, debes destruirlos, cuidado con los violetas, no son virus sino portadores de datos del sistema", 25, 445, width-30, height-5);
+    text(saludo[0], 25, 445, width-30, height-5);
     textAlign(RIGHT, BOTTOM);
     fill(#0CF037);
-    text("Te quedan "+ n + " virus por eliminar", width-25, height-25);
+    text(orden[1], width-25, height-25);
 
     }
-
-  // METODOS para KeyPressed()
-  // moverIzq()
-  // --mueve al personaje hacia la izquierda con la flecha correspondiente
-  //
-  // moverDer()
-  // --mueve al personaje hacia la derecha con la flecha correspondiente
-  //
-  // saltar()
-  // --mueve el personaje hacia arriba para evitar las descargadas
-  //
-  // Parar()
-  // --el personaje congela el tiempo y puede subir a portal
 }

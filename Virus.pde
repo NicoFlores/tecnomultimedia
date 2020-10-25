@@ -1,15 +1,16 @@
 class Virus {
   
-  PImage virus; 
+  PImage [] virus = new PImage [3]; 
   float x, y;
   float ancho , alto;
-  float dx;
-  float dy;
-  int c;
+  float dx, dy;
+  int i;
   
-  Virus(int c) {
+  Virus() {
+    
     imageMode(CENTER);
-    virus = loadImage("virus"+ c%3 +".png");
+    for ( int j = 0; j < virus.length ; j++ )
+    virus [j]  = loadImage("virus"+ j +".png");
     x= random (width);
     y= random (height);
     alto = 100;
@@ -19,9 +20,10 @@ class Virus {
     
 }
 
-  void dibujar() {
+  void dibujar(int tipo, boolean aparecer) {
+    if(aparecer == true)
     noStroke();
-    image( virus , x, y, ancho, alto);
+    image( virus[tipo] , x, y, ancho, alto);
   }
   
   void mover() {
@@ -38,20 +40,27 @@ class Virus {
     }
     if (y >(height - (170 + alto/2))) {  //abajo
       y = height - (170 + alto/2);
-      dy = -dy;
+      dy= -dy;
     } else if (y < alto/2) {  //arriba
       y = alto/2;
-      dy=-dy; 
+      dy = -dy; 
     }
   }
-//  void mover() {
-//    x=x+dx;
-//    y=y+dy;
-//  }
-//  void reboteBajo() {
-//    if (y >(height - alto/2)) {  //abajo
-//      y = height - alto/2;
-//      dy = -dy;
-//    }
 
+// ------------------------------- COLISIONES ---------------------------------------
+
+// INTENTO DE COLISION EFECTIVA CON VIRUS
+
+void desaparecer(Mira puntero) {
+  
+  line(x, y, puntero.x, puntero.y );
+//  // desaparece el virus que fue tocado por el muose 
+//  //if ( puntero.x > x + ancho/2 && puntero.x < x - ancho/2 && puntero.y > y - alto/2 && puntero.y < y + alto/2 ){
+  
+//  if ( mouseX > x + ancho/2 && mouseX < x - ancho/2 && mouseY > y - alto/2 && mouseY < y + alto/2 ){  
+    
+//    println("matar");
+    
+  }
 }
+  

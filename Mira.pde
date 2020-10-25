@@ -5,63 +5,49 @@ class Mira{
   // Posición y tamaño
   float x, y;
   float tam;
-  PImage [] reticula = new PImage [2];
+  PImage [] mira = new PImage [2];
   
   // -----------------------------------------------------
   // CONSTRUCTOR > metodo/funcion inicial (el "setup" del objeto)
     
     Mira() {
-    pushStyle();
+  
     // inicializar posicion y tamaño mediante parámetros
-
+    imageMode(CENTER);
+    for ( int j = 0; j < mira.length ; j++ )
+    mira [j]  = loadImage("mira"+ j +".png");
+    
     x = width/2;
     y = height/2;
     tam = 100;
     
-    //carga de las imagenes
-    for (int i = 0; i > 2; i++ )
-    reticula [i] = loadImage ( "mira" + i + ".png" );  
-    popStyle();
     }
-  // -----------------------------------------------------
-  // METODOS (funciones) #acciones
-  // dibujar()
-   void dibujar() {
+
+
+// ------------------------METODOS (funciones)-----------------------------
+  
+  
+  //  #acciones
+  
+    void dibujar() {
    
      if (mousePressed == true) {
-     imageMode(CENTER);
-     image( reticula[1] , mouseX, mouseY, tam, tam);
+     image( mira[1] , mouseX, mouseY, tam, tam);
      
    } else {
       
-       image( reticula[0] , mouseX, mouseY, tam, tam);
+       image( mira[0] , mouseX, mouseY, tam, tam);
      }
    }
+
+    void tirar(Virus[] objetivo) {
+
+      for ( int o = 0; o < objetivo.length; o++ ) {
+        strokeWeight(10);
+        fill(#05EAFC);
+        line(x, y, objetivo[o].x, objetivo[o].y);
 } 
-   //void rojo () {
    
-   //  if (mousePressed == true) {
+    }
      
-     
-     
-     
-   
-     
-   
-   
-   
-   
-  
-  // void mouseDragged()  {
-  
-  //   value = value + 5;
-  //if (value > 255) {
-  //  value = 0;
-  //}  
-
-  // choques()
-  // --lanza choques un una direccion determinada 
-
-
-
- 
+}    

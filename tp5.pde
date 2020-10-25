@@ -2,62 +2,38 @@
 // com2 | Prof. Matias Jauregui Lorda
 
 // NOMBRE ALUMNO * Israel Nicolas Flores Llanos
-// NOMBRE TENTATIVO DEL JUEG0 * GO HOME
+// NOMBRE TENTATIVO DEL JUEG0 *  Alerta Virus
 
 /* PROPUESTA 
  
  
  */
 
-int c = 20;
+
 
 //declaro la clase juego
 
 Fondo error;
-Virus[] objeto= new Virus[c];
+Virus[] rojo = new Virus[5], verde = new Virus[5], violeta = new Virus[5] ;
 Mira mira;
 Contador consola;
 
-//Juego juego;
+Juego juego;
 
 void setup() {
   size( 800, 600 );
   //inicializo la clase juego
-  
-  error = new Fondo ();
-  
- for ( int i = 0; i < c ; i++ ) {
-  //creo cada instancia de objeto
-  objeto[i]=new Virus(i);
-  }
-  
-  mira = new Mira ();
-  
-  consola = new Contador ();
-  
-  
-  //juego = new Juego();
+    
+    juego = new Juego();
 }
 
 void draw() {
-  
-  error.dibujar();
-  
- for ( int i = 0; i < c; i++ ) {
-  objeto[i].mover();
-  objeto[i].rebotar();
-  
-  //dibuja circulos
-  objeto[i].dibujar();
- }  
-  
-  mira.dibujar ();
-  
-  consola.dibujar ();
-  
+
   //llamo a los métodos de la clase Juego
   //juego.actualizar();
-  //juego.dibujar();
+  juego.mover ();
+  
+  juego.dibujar();
 }
 
 void keyPressed() {
