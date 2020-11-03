@@ -1,7 +1,7 @@
 class Aventura {
   
   // --------------------------PROPIEDADES (variables)---------------------------
-      
+     // hola Nico 
       String estado;   // estado
       
       //ARREGLOS
