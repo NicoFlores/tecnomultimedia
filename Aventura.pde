@@ -351,31 +351,31 @@ class Aventura {
  }
 void mouse_(){// mouse moved
 //evento PRESIONAR SOBRE BOBINA
-  if(aventura.estado.equals("Bobina")&& !botonCircular(width/8*4, height/4*2, 90/2)){ 
-    aventura.estado = ("rayos");
+  if(estado.equals("Bobina")&& !botonCircular(width/8*4, height/4*2, 90/2)){ 
+    estado = ("rayos");
 }
 }
 void teclas(){
  if (keyCode == ENTER ){
-  aventura.estado = ("inicio");
+  estado = ("inicio");
   }
    //evento F reparar portal
- if( key == 'f' && aventura.estado.equals("futuro") || key == 'F' && aventura.estado.equals("futuro") ){
-    aventura.estado = "fix";
+ if( key == 'f' && estado.equals("futuro") || key == 'F' && estado.equals("futuro") ){
+    estado = "fix";
   }
   
  //evento S quedarte en el 2020
- if( key == 'S' && aventura.estado.equals("futuro") || key == 's' && aventura.estado.equals("futuro") ){
-    aventura.estado = "stay";
+ if( key == 'S' && estado.equals("futuro") || key == 's' && estado.equals("futuro") ){
+    estado = "stay";
   }
 
  //evento R correr
- if( key == 'R' && aventura.estado.equals("stay") || key == 'r' && aventura.estado.equals("stay") ){
-    aventura.estado = "run";
+ if( key == 'R' && estado.equals("stay") || key == 'r' && estado.equals("stay") ){
+    estado = "run";
  
  //evento T transbordador
- }else if( key == 'T' && aventura.estado.equals("stay") || key == 't' && aventura.estado.equals("stay") ){
-    aventura.estado = "trans";
+ }else if( key == 'T' && estado.equals("stay") || key == 't' && estado.equals("stay") ){
+    estado = "trans";
   }
 }
  }
