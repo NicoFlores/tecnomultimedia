@@ -15,5 +15,14 @@ aventura.dibujar ();
 
 
 }
+void mousePressed(){
+aventura.mouse();
+}
+voidmouseMoved(){
+aventura.mouse_();
+}
+void keyPressed(){
+aventura.teclas();
+}
 
   
