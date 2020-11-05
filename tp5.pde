@@ -6,6 +6,15 @@
 
 /* PROPUESTA 
  
+ En mi aventura gráfica al pulsar en la opcion futuro el viajero sufre un accidente y cae en el 2020
+ esto es peligroso pues podria encontrarse con su otro yo y romper la barrera espacio temporal, el juego
+ tratará de enfrentar a los virus, ganar y ser rediriguido al pasado, o caer en el 2020 con daños en el 
+ transbordador y contuniar con la aventura en el futuro que es muy peligrosa.
+ 
+ Funcionamineto
+ 
+ un objeto mira se encarga de destruir a una serie de objetos virus, los cuales no son todos malignos, el 
+ jugador debe eliminar a los virus correcto o sino dañará el transbordador
  
  */
 
@@ -13,18 +22,14 @@
 
 //declaro la clase juego
 
-Fondo error;
-Virus[] rojo = new Virus[5], verde = new Virus[5], violeta = new Virus[5] ;
-Mira mira;
-Contador consola;
-
 Juego juego;
 
 void setup() {
   size( 800, 600 );
+  
   //inicializo la clase juego
-    
-    juego = new Juego();
+
+  juego = new Juego();
 }
 
 void draw() {
@@ -32,13 +37,19 @@ void draw() {
   //llamo a los métodos de la clase Juego
   //juego.actualizar();
   juego.mover ();
-  
+
   juego.dibujar();
 }
 
+void mouseClicked() {
+
+  juego.clic();
+}
+
 void keyPressed() {
-  //metodos de las teclas
-  //juego.teclas();
+
+  juego.teclas();
+
 }
 
 
