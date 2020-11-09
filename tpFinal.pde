@@ -18,7 +18,7 @@ aventura.dibujar ();
 void mousePressed(){
 aventura.mouse();
 }
-voidmouseMoved(){
+void mouseMoved(){
 aventura.mouse_();
 }
 void keyPressed(){
