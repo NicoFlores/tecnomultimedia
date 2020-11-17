@@ -254,14 +254,14 @@ class Aventura {
       juego.dibujar(shot);
     } else if ( estado.equals("futuro") ) {  
 
-      pantallaConsola ( 4, 255, 255, 0, 440, 7, 6);
+      pantallaConsola ( 4, 255, 255, 0, height * 0.73, 7, 6);
 
       // prueba de color
       imageMode(CENTER);
       image(error, width/2, height/3*1, width/2, height/2 );
     } else if ( estado.equals("fix") ) {  
 
-      pantallaConsola ( 4, 255, 255, 0, 440, 8, 5);
+      pantallaConsola ( 4, 255, 255, 0, height * 0.73, 8, 5);
 
       imageMode(CENTER);
       tint(200, 255);
@@ -270,10 +270,10 @@ class Aventura {
       creditos(width/2, height/10);
     } else if ( estado.equals("stay") ) {  
 
-      pantallaConsola ( 5, 255, 255, 0, 440, 9, 7);
+      pantallaConsola ( 5, 255, 255, 0, height * 0.73, 9, 7);
     } else if ( estado.equals("run") ) {  
 
-      pantallaConsola ( 4, 255, 255, 0, 440, 10, 5);
+      pantallaConsola ( 4, 255, 255, 0, height * 0.73, 10, 5);
 
       imageMode(CENTER);
       tint(200, 255);
@@ -282,7 +282,7 @@ class Aventura {
       creditos(width/2, height/10);
     } else if ( estado.equals("trans") ) {  
 
-      pantallaConsola ( 6, 200, 255, 0, 440, 11, 5);
+      pantallaConsola ( 6, 200, 255, 0, height * 0.73, 11, 5);
 
       imageMode(CENTER);
       tint(230, 255);
