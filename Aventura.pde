@@ -27,10 +27,24 @@ class Aventura {
   float matiz = 0;
   PImage rayo, exploAC, exploDC, Portal, error, PortalC;
 
-
+  //sonido
+  Sound sound;
+  SoundFile clic, shot, fondo;
+  
+  
+  
+  
 
   // ---------------------CONSTRUCTOR (setup del objeto-----------------------------
-  Aventura() {
+  Aventura(PApplet MiApp_) {
+// sonido
+
+  clic = new SoundFile (MiApp_,"click.wav");
+  shot= new SoundFile (MiApp_, "shot.wav");
+  fondo = new SoundFile (MiApp_,"fondo1.wav");
+  fondo.loop();
+  
+
 
     estado = "inicio";
     juego = new Juego();
@@ -97,7 +111,7 @@ class Aventura {
     indicador[7] = "Pulsa (R) correr o (T) cooperar con la policía";
   }
 
-  void dibujar (AudioSample shot) {
+  void dibujar () {
     //pantalla (int imagenBase, float tinte, float opacidadTinte, float posXConsola, float posYConsola,int textoConsola, int orden)
     //botonCuadrado (float xBoton, float yBoton, float ancho, float alto)
     //BotonCuadroTexto (String texto, int letra, int relleno, float  CBX, float CBY )
@@ -215,16 +229,16 @@ class Aventura {
       //Edisson
       colorMode(HSB, 360, 100, 100);
       fill(matiz, 100, 100, 75);
-      quad(width * 0.2825 , height * 0.5433, width * 0.3575 , height * 0.55 , width * 0.35125, height * 0.7433, width * 0.2825 , height * 0.7433);
-      quad(width * 0.4375 , height * 0.55166, width * 0.5 , height * 0.56 , width * 0.5, height * 0.74833, width * 0.44 , height * 0.7533);
-      quad(width * 0.86875 , height * 0.56166, width * 0.9275 , height * 0.5666 , width * 0.93125 , height * 0.77 , width * 0.865 , height * 0.767);
+      quad(width * 0.2825, height * 0.5433, width * 0.3575, height * 0.55, width * 0.35125, height * 0.7433, width * 0.2825, height * 0.7433);
+      quad(width * 0.4375, height * 0.55166, width * 0.5, height * 0.56, width * 0.5, height * 0.74833, width * 0.44, height * 0.7533);
+      quad(width * 0.86875, height * 0.56166, width * 0.9275, height * 0.5666, width * 0.93125, height * 0.77, width * 0.865, height * 0.767);
       noTint();
       imageMode(CORNER);
       image(cientificos[1], width - 430, height - 300, 420, 300 );
       //bombilla
       imageMode(CENTER);
       tint(matiz, 100, 100, 75);
-      image(inventos[2],width - 328 , height - 70 , 80, 100); 
+      image(inventos[2], width - 328, height - 70, 80, 100); 
 
       //texto en consola 
       textFont(fuente[1], 23);
@@ -296,53 +310,53 @@ class Aventura {
 
 
   //Funciones de interaccion-------------------------------------------------------- 3/11
-  void mouse(AudioSample s) { //mouse clicked
+  void mouse() { //mouse clicked
     // evento CLIC A PASADO
     juego.clic();
     if (botonCuadrado(width * 0.05, height* 0.53, 145, 40) && estado.equals("inicio")) { 
-      s.trigger();
+      clic.play();
       estado = ("pasado");
     } 
 
     //evento CLIC A FUTURO
     if (botonCuadrado(width * 0.75, height* 0.53, 145, 40) && estado.equals("inicio")) {
-      shot.trigger();
+      clic.play();
       estado = ("juego");
 
       // evento CLIC TESLA
     } else if (botonCuadrado(width/5, height/5, 150, 200 ) && estado.equals("pasado")) { 
-      s.trigger();
+      clic.play();
       estado = ("PTesla");
 
       //evento CLIC EDISSON
     } else if (botonCuadrado( width/4 * 2, height/5, 280, 200) && estado.equals("pasado")) {
-      s.trigger();
+      clic.play();
       estado = ("PEdisson");
     }
     // evento CLIC BOMBILLA
     if (botonCuadrado( width/8*3-40, height/4 *3-50, 80, 100) && estado.equals("PEdisson")) { 
-      s.trigger();
+     clic.play();
       estado = ("Bombilla");
 
       //evento CLIC DC
     } else if ( botonCircular(width/8, height/4*3, 45) && estado.equals("PEdisson")) { 
-      s.trigger();
+      clic.play();
       estado = ("DC");
 
       //evento CLIC BOMBILLA CAMBIO DE COLOR
-    } else if (botonCuadrado( width - 368 , height - 120, 80, 100) && estado.equals("Bombilla")) {
-      s.trigger();
+    } else if (botonCuadrado( width - 368, height - 120, 80, 100) && estado.equals("Bombilla")) {
+     clic.play();
       estado = ("Bombilla");
       matiz= random(0, 360);
     }
     //evento CLIC BOBINA
     if (estado.equals("PTesla")&& dist(mouseX, mouseY, width/8*4, height/4*2) <= 45) {  
-      s.trigger();
+     clic.play();
       estado = ("Bobina");
 
       //evento CLIC AC
     } else if ( botonCircular (width/8*6, height/4 *2, 90/2) && estado.equals("PTesla")) { 
-      s.trigger();
+      clic.play();
       estado = ("AC");
     }
   }
@@ -353,34 +367,34 @@ class Aventura {
       estado = ("rayos");
     }
   }
-  void teclas(AudioSample s) {
-    juego.teclas(s);
+  void teclas() {
+    juego.teclas(clic);
     if (keyCode == ENTER && estado.equals("rayos")||keyCode == ENTER && estado.equals("AC")||keyCode == ENTER && estado.equals("DC")||
       keyCode == ENTER && estado.equals("Bombilla")||keyCode == ENTER && estado.equals("fix")||keyCode == ENTER && estado.equals("run")||
       keyCode == ENTER && estado.equals("trans")) {
-      s.trigger();
+     clic.play();
       estado = ("inicio");
     }
     //evento F reparar portal
     if ( key == 'f' && estado.equals("futuro") || key == 'F' && estado.equals("futuro") ) {
-      s.trigger();
+      clic.play();
       estado = "fix";
     }
 
     //evento S quedarte en el 2020
     if ( key == 'S' && estado.equals("futuro") || key == 's' && estado.equals("futuro") ) {
-      s.trigger();
+      clic.play();
       estado = "stay";
     }
 
     //evento R correr
     if ( key == 'R' && estado.equals("stay") || key == 'r' && estado.equals("stay") ) {
-      s.trigger();
+      clic.play();
       estado = "run";
 
       //evento T transbordador
     } else if ( key == 'T' && estado.equals("stay") || key == 't' && estado.equals("stay") ) {
-      s.trigger();
+      clic.play();
       estado = "trans";
     }
   }

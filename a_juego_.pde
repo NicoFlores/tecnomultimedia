@@ -106,6 +106,7 @@ class Juego {
       consola.dibujar(3, 3);
 
       consola.mensaje(1);
+      
     }
 
     if (estado.equals ("perder")) {
@@ -115,6 +116,7 @@ class Juego {
       consola.dibujar(2, 2);
 
       consola.mensaje(2);
+     
     }
   }
 
@@ -134,12 +136,12 @@ class Juego {
   void teclas (AudioSample s) {
 
     if (estado.equals("menu") && key == ' ') {
-      s.trigger();
+      s.play();
       estado = "jugar";
     }
 
     if (estado.equals("perder") && key == ' ') {
-      s.trigger();
+      s.play();
       estado = "jugar";
 
       for ( int i = 0; i < 5; i++ ) {
@@ -153,7 +155,7 @@ class Juego {
     }
 
     if (estado.equals("ganar") && key == 'g'|| estado.equals("ganar") && key == 'G') {
-      s.trigger();
+      s.play();
       estado="menu";
       aventura.estado = "futuro";
     }
