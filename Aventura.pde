@@ -104,7 +104,7 @@ class Aventura {
 
     if ( estado.equals("inicio") ) {
 
-      pantallaConsola(0, 255, 255, 0, 440, 0, 0);   
+      pantallaConsola(0, 255, 255, 0, height * 0.73, 0, 0);   
 
       //Boton pasado
       BotonCuadroTexto("PASADO", letra, relleno, width * 0.05, height* 0.53);
@@ -129,7 +129,7 @@ class Aventura {
       }
     } else if ( estado.equals("pasado") ) { //evento PASADO
 
-      pantallaConsola(1, 150, 125, 0, 440, 1, 0);    
+      pantallaConsola(1, 150, 125, 0, height * 0.73, 1, 0);    
 
       imageMode(CORNER);
       //Tesla 
@@ -176,7 +176,7 @@ class Aventura {
       image(inventos[0], width/8*4, height/4*2, 100, 100);
     } else if ( estado.equals("rayos") ) { 
 
-      pantallaConsola(2, 150, 125, 0, 440, 5, 5);
+      pantallaConsola(2, 150, 125, 0, height * 0.73, 5, 5);
 
       //interaccion rayos
       imageMode(CENTER);
@@ -194,7 +194,7 @@ class Aventura {
       creditos(width/2, height/10);
     } else if ( estado.equals("AC") ) { 
 
-      pantallaConsola(2, 150, 125, 0, 440, 5, 5);
+      pantallaConsola(2, 150, 125, 0, height * 0.73, 5, 5);
 
       imageMode(CENTER);
       tint(150, 255);
@@ -215,16 +215,16 @@ class Aventura {
       //Edisson
       colorMode(HSB, 360, 100, 100);
       fill(matiz, 100, 100, 75);
-      quad(226, 326, 286, 330, 281, 446, 226, 446);
-      quad(350, 331, 400, 336, 400, 449, 352, 452);
-      quad(695, 337, 742, 340, 745, 462, 692, 460);
+      quad(width * 0.2825 , height * 0.5433, width * 0.3575 , height * 0.55 , width * 0.35125, height * 0.7433, width * 0.2825 , height * 0.7433);
+      quad(width * 0.4375 , height * 0.55166, width * 0.5 , height * 0.56 , width * 0.5, height * 0.74833, width * 0.44 , height * 0.7533);
+      quad(width * 0.86875 , height * 0.56166, width * 0.9275 , height * 0.5666 , width * 0.93125 , height * 0.77 , width * 0.865 , height * 0.767);
       noTint();
       imageMode(CORNER);
       image(cientificos[1], width - 430, height - 300, 420, 300 );
       //bombilla
       imageMode(CENTER);
       tint(matiz, 100, 100, 75);
-      image(inventos[2], 472, 530, 80, 100); 
+      image(inventos[2],width - 328 , height - 70 , 80, 100); 
 
       //texto en consola 
       textFont(fuente[1], 23);
@@ -330,7 +330,7 @@ class Aventura {
       estado = ("DC");
 
       //evento CLIC BOMBILLA CAMBIO DE COLOR
-    } else if (botonCuadrado( 472-40, 530-50, 80, 100) && estado.equals("Bombilla")) {
+    } else if (botonCuadrado( width - 368 , height - 120, 80, 100) && estado.equals("Bombilla")) {
       s.trigger();
       estado = ("Bombilla");
       matiz= random(0, 360);
