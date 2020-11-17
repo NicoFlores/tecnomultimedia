@@ -15,6 +15,10 @@ void setup() {
 
   size( 800, 600 );
 
+  surface.setTitle("Viaje en el Tiempo 2000");
+  surface.setResizable(true);
+  surface.setLocation(100, 100);
+  
   aventura = new  Aventura ();
   soundengine = new Minim(this);
   clic = soundengine.loadSample("click.wav", 1024);
