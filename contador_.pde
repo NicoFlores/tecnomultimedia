@@ -11,8 +11,8 @@ class Contador {
   // ------------------------CONSTRUCTOR -----------------------------
   Contador() {
 
-    x = 20;
-    y = 440;
+    x = width * 0.016 ;
+    y = height * 0.73;
     alto = 140;
     ancho = width-40;
     consola = color (0, 50);
@@ -88,15 +88,15 @@ class Contador {
   void dibujar (int texto, int accion) {
     noStroke(); 
     fill(consola); 
-    rect(x, y, ancho, alto, 10); 
+    rect(width * 0.016, height * 0.73, width-40,  height /100 * 23, 10); 
     //texto en consola 
     textAlign(LEFT, TOP); 
     textFont(letras, 25); 
     fill(#0CF037); 
-    text(saludo[texto], 25, 445, width-30, height-5); 
+    text(saludo[texto],width * 0.016 + 5, height * 0.73 + 5, width-35, height-5); 
     textAlign(RIGHT, BOTTOM); 
     fill(#0CF037); 
-    text(orden[accion], width-25, height-25);
+    text(orden[accion], width * 0.016 + width - (width /100 * 5), height * 0.73 + (height /100 * 23) -5 );
   }
 
   void mensaje (int texto) {
