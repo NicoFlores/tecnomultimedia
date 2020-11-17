@@ -58,16 +58,15 @@ class Juego {
     }
     if (estado.equals("jugar") && consola.n == -10) {
 
-        for (int i = 0; i < 5; i++) {
-          verde[i].dibujar = true;
-          rojo[i].dibujar = true;
-          estado = "ganar";
-       
+      for (int i = 0; i < 5; i++) {
+        verde[i].dibujar = true;
+        rojo[i].dibujar = true;
+        estado = "ganar";
       }
     }
   }
 
-  void dibujar() {
+  void dibujar(AudioSample shot) {
 
     if (estado.equals ("menu")) {
 
@@ -95,7 +94,7 @@ class Juego {
         violeta[i].dibujar(1);  //amigo
       }  
 
-      mira.dibujar();
+      mira.dibujar(shot);
 
       consola.dibujar(1, 1);
     }
@@ -129,17 +128,18 @@ class Juego {
 
       violeta[i].perder (mira, aventura.juego);
     }
+    
   }
 
-  void teclas () {
+  void teclas (AudioSample s) {
 
     if (estado.equals("menu") && key == ' ') {
-
+      s.trigger();
       estado = "jugar";
     }
 
     if (estado.equals("perder") && key == ' ') {
-
+      s.trigger();
       estado = "jugar";
 
       for ( int i = 0; i < 5; i++ ) {
@@ -153,7 +153,7 @@ class Juego {
     }
 
     if (estado.equals("ganar") && key == 'g'|| estado.equals("ganar") && key == 'G') {
-
+      s.trigger();
       aventura.estado = "futuro";
     }
   }

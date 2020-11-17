@@ -15,15 +15,18 @@ class Mira {
     tam = 100;
   }
 
-  void dibujar() {
+  void dibujar(AudioSample shot) {
 
     if (mousePressed == true) {
+       shot.trigger();
       image( mira[1], mouseX, mouseY, tam, tam);
       x = mouseX;
       y = mouseY;
+     
     } else {
 
       image( mira[0], mouseX, mouseY, tam, tam);
+      
       x = mouseX;
       y = mouseY;
     }

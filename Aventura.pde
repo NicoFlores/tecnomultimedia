@@ -1,5 +1,5 @@
-class Aventura {
 
+class Aventura {
   // --------------------------PROPIEDADES (variables)---------------------------
   // hola Nico 
   String estado;   // estado
@@ -28,12 +28,12 @@ class Aventura {
   PImage rayo, exploAC, exploDC, Portal, error, PortalC;
 
 
-  // ---------------------CONSTRUCTOR (setup del objeto-----------------------------
 
+  // ---------------------CONSTRUCTOR (setup del objeto-----------------------------
   Aventura() {
 
     estado = "inicio";
-juego = new Juego();
+    juego = new Juego();
     // CARGAR ARREGLOS 
 
     rayo = loadImage("rayo.png");
@@ -96,8 +96,8 @@ juego = new Juego();
     indicador[6] = "Pulsa (F) reparar el portal o (S) quedarte en el 2020";
     indicador[7] = "Pulsa (R) correr o (T) cooperar con la policía";
   }
-  void dibujar () {
 
+  void dibujar (AudioSample shot) {
     //pantalla (int imagenBase, float tinte, float opacidadTinte, float posXConsola, float posYConsola,int textoConsola, int orden)
     //botonCuadrado (float xBoton, float yBoton, float ancho, float alto)
     //BotonCuadroTexto (String texto, int letra, int relleno, float  CBX, float CBY )
@@ -248,13 +248,10 @@ juego = new Juego();
       image(cientificos[1], width - 430, height - 300, 420, 300 );
 
       creditos(width/3, height/3);
-     
+
       //-----------------------------------------------------------------!!!!!!!!!!!!JUEGO!!!!!!!!--------------------------------------------
-      
-    }else if (estado.equals("juego")){
-      juego.dibujar();
-      
-      
+    } else if (estado.equals("juego")) {
+      juego.dibujar(shot);
     } else if ( estado.equals("futuro") ) {  
 
       pantallaConsola ( 4, 255, 255, 0, 440, 7, 6);
@@ -294,45 +291,58 @@ juego = new Juego();
       creditos(width/2, height/10);
     }
   }
+  //-----------------------------------------------------!!!!!!!!!!!!!!!!!!!sonido!!!!!!!!!!!!!!!!!!!
+
+
+
   //Funciones de interaccion-------------------------------------------------------- 3/11
-  void mouse() { //mouse clicked
+  void mouse(AudioSample s) { //mouse clicked
     // evento CLIC A PASADO
     juego.clic();
     if (botonCuadrado(width * 0.05, height* 0.53, 145, 40) && estado.equals("inicio")) { 
+      s.trigger();
       estado = ("pasado");
     } 
 
     //evento CLIC A FUTURO
     if (botonCuadrado(width * 0.75, height* 0.53, 145, 40) && estado.equals("inicio")) {
+      shot.trigger();
       estado = ("juego");
 
       // evento CLIC TESLA
     } else if (botonCuadrado(width/5, height/5, 150, 200 ) && estado.equals("pasado")) { 
+      s.trigger();
       estado = ("PTesla");
 
       //evento CLIC EDISSON
     } else if (botonCuadrado( width/4 * 2, height/5, 280, 200) && estado.equals("pasado")) {
+      s.trigger();
       estado = ("PEdisson");
     }
     // evento CLIC BOMBILLA
     if (botonCuadrado( width/8*3-40, height/4 *3-50, 80, 100) && estado.equals("PEdisson")) { 
+      s.trigger();
       estado = ("Bombilla");
 
       //evento CLIC DC
     } else if ( botonCircular(width/8, height/4*3, 45) && estado.equals("PEdisson")) { 
+      s.trigger();
       estado = ("DC");
 
       //evento CLIC BOMBILLA CAMBIO DE COLOR
     } else if (botonCuadrado( 472-40, 530-50, 80, 100) && estado.equals("Bombilla")) {
+      s.trigger();
       estado = ("Bombilla");
       matiz= random(0, 360);
     }
     //evento CLIC BOBINA
     if (estado.equals("PTesla")&& dist(mouseX, mouseY, width/8*4, height/4*2) <= 45) {  
+      s.trigger();
       estado = ("Bobina");
 
       //evento CLIC AC
     } else if ( botonCircular (width/8*6, height/4 *2, 90/2) && estado.equals("PTesla")) { 
+      s.trigger();
       estado = ("AC");
     }
   }
@@ -343,29 +353,34 @@ juego = new Juego();
       estado = ("rayos");
     }
   }
-  void teclas() {
-    juego.teclas();
+  void teclas(AudioSample s) {
+    juego.teclas(s);
     if (keyCode == ENTER && estado.equals("rayos")||keyCode == ENTER && estado.equals("AC")||keyCode == ENTER && estado.equals("DC")||
-    keyCode == ENTER && estado.equals("Bombilla")||keyCode == ENTER && estado.equals("fix")||keyCode == ENTER && estado.equals("run")||
-    keyCode == ENTER && estado.equals("trans")) {
+      keyCode == ENTER && estado.equals("Bombilla")||keyCode == ENTER && estado.equals("fix")||keyCode == ENTER && estado.equals("run")||
+      keyCode == ENTER && estado.equals("trans")) {
+      s.trigger();
       estado = ("inicio");
     }
     //evento F reparar portal
     if ( key == 'f' && estado.equals("futuro") || key == 'F' && estado.equals("futuro") ) {
+      s.trigger();
       estado = "fix";
     }
 
     //evento S quedarte en el 2020
     if ( key == 'S' && estado.equals("futuro") || key == 's' && estado.equals("futuro") ) {
+      s.trigger();
       estado = "stay";
     }
 
     //evento R correr
     if ( key == 'R' && estado.equals("stay") || key == 'r' && estado.equals("stay") ) {
+      s.trigger();
       estado = "run";
 
       //evento T transbordador
     } else if ( key == 'T' && estado.equals("stay") || key == 't' && estado.equals("stay") ) {
+      s.trigger();
       estado = "trans";
     }
   }
