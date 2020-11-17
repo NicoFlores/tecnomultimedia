@@ -154,6 +154,7 @@ class Juego {
 
     if (estado.equals("ganar") && key == 'g'|| estado.equals("ganar") && key == 'G') {
       s.trigger();
+      estado="menu";
       aventura.estado = "futuro";
     }
   }
