@@ -22,7 +22,7 @@ class Mira {
   void dibujar(AudioSample shot) {
 
     if (mousePressed == true) {
-      shot.trigger();
+       shot.play();
       image( mira[1], mouseX, mouseY, tam, tam);
       x = mouseX;
       y = mouseY;
