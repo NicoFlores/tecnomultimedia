@@ -13,9 +13,8 @@ void setup() {
   surface.setResizable(true);
   surface.setLocation(100, 100);
 
-  aventura = new  Aventura ();
-  soundengine = new Minim(this);
- 
+  aventura = new  Aventura (this);
+  
 }
 
 void draw () {
