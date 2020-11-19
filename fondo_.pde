@@ -1,6 +1,6 @@
 class Fondo {
 
-  
+
   int x, y, arcoiris;
   float distancia, ancho, alto ;
 

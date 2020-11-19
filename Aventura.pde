@@ -1,9 +1,10 @@
 
 class Aventura {
   // --------------------------PROPIEDADES (variables)---------------------------
-  // hola Nico 
+
   String estado;   // estado
   Juego juego ;
+
   //ARREGLOS
 
   //fuentes
@@ -27,27 +28,14 @@ class Aventura {
   float matiz = 0;
   PImage rayo, exploAC, exploDC, Portal, error, PortalC;
 
-  //sonido
-  Sound sound;
-  SoundFile clic, shot, fondo;
-  
-  
-  
-  
+
 
   // ---------------------CONSTRUCTOR (setup del objeto-----------------------------
-  Aventura(PApplet MiApp_) {
-// sonido
-
-  clic = new SoundFile (MiApp_,"click.wav");
-  shot= new SoundFile (MiApp_, "shot.wav");
-  fondo = new SoundFile (MiApp_,"fondo1.wav");
-  fondo.loop();
-  
-
+  Aventura() {
 
     estado = "inicio";
     juego = new Juego();
+
     // CARGAR ARREGLOS 
 
     rayo = loadImage("rayo.png");
@@ -111,13 +99,108 @@ class Aventura {
     indicador[7] = "Pulsa (R) correr o (T) cooperar con la policía";
   }
 
-  void dibujar () {
+  //-----------------------------FUNCIONES GENERALES A METODOS-------------------------------------------------
+
+  boolean botonCuadrado(float xBoton, float yBoton, float ancho, float alto) {
+
+    if (mouseX > xBoton && mouseX < (xBoton + ancho) && mouseY > yBoton && mouseY < (yBoton + alto)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean botonCircular( float xBoton, float yBoton, float radio ) {
+    if ( dist(mouseX, mouseY, xBoton, yBoton ) < radio ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void creditos(int x, int y ) {
+
+    pushStyle();
+    textAlign(RIGHT, TOP);
+    textFont(fuente[2], 45);
+    fill(255);
+    text("Realizacíon \nProducción \n Coordinación \nImagenes \nTipografías \n\nSoporte ", x, y );
+    textAlign(LEFT, TOP);
+    textFont(fuente[3]);
+    fill(255);
+    text("Nico Flores & Clara Fallesen\nTecnoMultimedia1\nMatias Jauregui Lorda\nGoogle Images\nDaFont\nProcessing Fundation\nProcessing Fundation", x, y );
+    popStyle();
+  }
+
+  void BotonCuadroTexto (String texto, int letra, int relleno, float  CBX, float CBY ) {
+    pushStyle();
+
+    //cuadro
+    rectMode(CORNER);
+    strokeWeight(2);
+    stroke(0);
+    fill(relleno);
+    rect( CBX, CBY, 145, 40); //pasado
+
+    //texto 
+    textAlign(CENTER, CENTER);
+    textFont(fuente[0], 35);
+    fill(letra);
+    text(texto, CBX + 145/2, CBY + 20 );
+
+    popStyle();
+  }
+
+  void dialogo (float textX, float textY, int texto) {
+    pushStyle();
+
+    noStroke();
+    fill(0, 200);
+    rect(textX, textY, 400, 200, 10);  
+    textAlign(LEFT, TOP);
+    textFont(fuente[1], 16.5);
+    fill(255);
+    text(dialogo[texto], textX+10, textY+10, 380, 180); //170
+
+    popStyle();
+  }
+
+  void pantallaConsola (int imagenBase, float tinte, float opacidadTinte, float XConsola, float YConsola, int textoConsola, int orden) {
+
+    pushStyle();
+
+    imageMode(CORNER);
+    tint( tinte, opacidadTinte  );
+    image( base[imagenBase], 0, 0, width, height);
+
+    //consola inicio
+    noTint();
+    rectMode(CORNER);
+    noStroke();
+    fill(0, 200);
+    rect(XConsola + (width * 0.025), YConsola, width - (width * 0.05), height /100 * 23, 10);   
+
+    //texto en consola 
+    textAlign(LEFT, TOP);
+    textFont(fuente[1], 23);
+    fill(#0CF037);
+    text(consola[textoConsola], XConsola + (width / 100 * 3.125), YConsola + 5, width - (width * 0.0625), height-25);
+    textAlign(RIGHT, BOTTOM);
+    text(indicador[orden], XConsola + width - (width /100 * 3.8), YConsola + (height /100 * 23) -5 );
+
+    popStyle();
+  }
+
+  //METODOS DE AVENTURA 
+
+  void dibujar (AudioSample shot) {
     //pantalla (int imagenBase, float tinte, float opacidadTinte, float posXConsola, float posYConsola,int textoConsola, int orden)
     //botonCuadrado (float xBoton, float yBoton, float ancho, float alto)
     //BotonCuadroTexto (String texto, int letra, int relleno, float  CBX, float CBY )
 
     if ( estado.equals("inicio") ) {
 
+      pushStyle();
       pantallaConsola(0, 255, 255, 0, height * 0.73, 0, 0);   
 
       //Boton pasado
@@ -141,7 +224,10 @@ class Aventura {
         relleno = 0;
         letra = 255;
       }
+      popStyle();
     } else if ( estado.equals("pasado") ) { //evento PASADO
+
+      pushStyle();
 
       pantallaConsola(1, 150, 125, 0, height * 0.73, 1, 0);    
 
@@ -150,7 +236,11 @@ class Aventura {
       image(cientificos[0], width/5, height/5, 150, 200 );
       //Edisson
       image(cientificos[1], width/4 * 2, height/5, 280, 200 );
+
+      popStyle();
     } else if ( estado.equals("PEdisson") ) { 
+
+      pushStyle();
 
       pantallaConsola(3, 255, 255, 0, 10, 3, 0);
 
@@ -164,7 +254,11 @@ class Aventura {
       imageMode(CENTER);
       image(inventos[3], width/8, height/4 *3, 100, 100);    //DC
       image(inventos[2], width/8*3, height/4 *3, 80, 100);   //bombilla
+
+      popStyle();
     } else if ( estado.equals("PTesla") ) { 
+
+      pushStyle();
 
       pantallaConsola(2, 255, 255, 0, 10, 2, 0);
 
@@ -178,8 +272,10 @@ class Aventura {
       imageMode(CENTER);
       image(inventos[1], width/8*6, height/4 *2, 100, 100);    //AC
       image(inventos[0], width/8*4, height/4*2, 100, 100);   //bobina
+      popStyle();
     } else if ( estado.equals("Bobina") ) { 
 
+      pushStyle();
       pantallaConsola(2, 150, 125, 0, 10, 4, 2);
 
       //Tesla
@@ -188,8 +284,10 @@ class Aventura {
       //bobina 
       imageMode(CENTER);
       image(inventos[0], width/8*4, height/4*2, 100, 100);
+      popStyle();
     } else if ( estado.equals("rayos") ) { 
 
+      pushStyle();
       pantallaConsola(2, 150, 125, 0, height * 0.73, 5, 5);
 
       //interaccion rayos
@@ -206,8 +304,10 @@ class Aventura {
       image(cientificos[0], 0, height - 300, 300, 400 );
 
       creditos(width/2, height/10);
+      popStyle();
     } else if ( estado.equals("AC") ) { 
 
+      pushStyle();
       pantallaConsola(2, 150, 125, 0, height * 0.73, 5, 5);
 
       imageMode(CENTER);
@@ -221,6 +321,7 @@ class Aventura {
       image(cientificos[0], 0, height - 300, 300, 400 );
 
       creditos(width/2, height/10);
+      popStyle();
     } else if ( estado.equals("Bombilla") ) { 
 
       pushStyle();
@@ -249,6 +350,8 @@ class Aventura {
       popStyle();
     } else if ( estado.equals("DC") ) { 
 
+      pushStyle();
+
       pantallaConsola(3, 150, 125, 0, 10, 5, 5);
 
       imageMode(CENTER);
@@ -263,17 +366,30 @@ class Aventura {
 
       creditos(width/3, height/3);
 
+      popStyle();
+
       //-----------------------------------------------------------------!!!!!!!!!!!!JUEGO!!!!!!!!--------------------------------------------
     } else if (estado.equals("juego")) {
+
+      pushStyle();
+
       juego.dibujar(shot);
+
+      popStyle();
     } else if ( estado.equals("futuro") ) {  
+
+      pushStyle();
 
       pantallaConsola ( 4, 255, 255, 0, height * 0.73, 7, 6);
 
       // prueba de color
       imageMode(CENTER);
       image(error, width/2, height/3*1, width/2, height/2 );
+
+      popStyle();
     } else if ( estado.equals("fix") ) {  
+
+      pushStyle();
 
       pantallaConsola ( 4, 255, 255, 0, height * 0.73, 8, 5);
 
@@ -282,10 +398,18 @@ class Aventura {
       image(Portal, width/8*4.15, height/3 + 15, 1100, 750);  
 
       creditos(width/2, height/10);
+
+      popStyle();
     } else if ( estado.equals("stay") ) {  
 
+      pushStyle();
+
       pantallaConsola ( 5, 255, 255, 0, height * 0.73, 9, 7);
+
+      popStyle();
     } else if ( estado.equals("run") ) {  
+
+      pushStyle();   
 
       pantallaConsola ( 4, 255, 255, 0, height * 0.73, 10, 5);
 
@@ -294,7 +418,11 @@ class Aventura {
       image(Portal, width/8*4.15, height/3 + 15, 1100, 750);  
 
       creditos(width/2, height/10);
+
+      popStyle();
     } else if ( estado.equals("trans") ) {  
+
+      pushStyle(); 
 
       pantallaConsola ( 6, 200, 255, 0, height * 0.73, 11, 5);
 
@@ -303,98 +431,99 @@ class Aventura {
       image(PortalC, width/8, height/5*2 - 25, 200, 400);  
 
       creditos(width/2, height/10);
+
+      popStyle();
     }
   }
-  //-----------------------------------------------------!!!!!!!!!!!!!!!!!!!sonido!!!!!!!!!!!!!!!!!!!
+  //-----------------------------------------------------!!!!!!!!!!!!!!!!!!!sonido!!!!!!!!!!!!!!!!!!!------------------------------
 
-
-
-  //Funciones de interaccion-------------------------------------------------------- 3/11
-  void mouse() { //mouse clicked
+  //Funciones de interaccion-----------------------------------------
+  void mouse(AudioSample s) { //mouse clicked
     // evento CLIC A PASADO
     juego.clic();
     if (botonCuadrado(width * 0.05, height* 0.53, 145, 40) && estado.equals("inicio")) { 
-      clic.play();
+      s.trigger();
       estado = ("pasado");
     } 
 
     //evento CLIC A FUTURO
     if (botonCuadrado(width * 0.75, height* 0.53, 145, 40) && estado.equals("inicio")) {
-      clic.play();
+      shot.trigger();
       estado = ("juego");
 
       // evento CLIC TESLA
     } else if (botonCuadrado(width/5, height/5, 150, 200 ) && estado.equals("pasado")) { 
-      clic.play();
+      s.trigger();
       estado = ("PTesla");
 
       //evento CLIC EDISSON
     } else if (botonCuadrado( width/4 * 2, height/5, 280, 200) && estado.equals("pasado")) {
-      clic.play();
+      s.trigger();
       estado = ("PEdisson");
     }
     // evento CLIC BOMBILLA
     if (botonCuadrado( width/8*3-40, height/4 *3-50, 80, 100) && estado.equals("PEdisson")) { 
-     clic.play();
+      s.trigger();
       estado = ("Bombilla");
 
       //evento CLIC DC
     } else if ( botonCircular(width/8, height/4*3, 45) && estado.equals("PEdisson")) { 
-      clic.play();
+      s.trigger();
       estado = ("DC");
 
       //evento CLIC BOMBILLA CAMBIO DE COLOR
     } else if (botonCuadrado( width - 368, height - 120, 80, 100) && estado.equals("Bombilla")) {
-     clic.play();
+      s.trigger();
       estado = ("Bombilla");
       matiz= random(0, 360);
     }
     //evento CLIC BOBINA
     if (estado.equals("PTesla")&& dist(mouseX, mouseY, width/8*4, height/4*2) <= 45) {  
-     clic.play();
+      s.trigger();
       estado = ("Bobina");
 
       //evento CLIC AC
     } else if ( botonCircular (width/8*6, height/4 *2, 90/2) && estado.equals("PTesla")) { 
-      clic.play();
+      s.trigger();
       estado = ("AC");
     }
   }
 
-  void mouse_() {// mouse moved
+  void mouse_() {
+   // mouse moved
     //evento PRESIONAR SOBRE BOBINA
     if (estado.equals("Bobina")&& !botonCircular(width/8*4, height/4*2, 90/2)) { 
       estado = ("rayos");
     }
   }
-  void teclas() {
-    juego.teclas(clic);
+  void teclas(AudioSample s) {
+    juego.teclas(s);
     if (keyCode == ENTER && estado.equals("rayos")||keyCode == ENTER && estado.equals("AC")||keyCode == ENTER && estado.equals("DC")||
       keyCode == ENTER && estado.equals("Bombilla")||keyCode == ENTER && estado.equals("fix")||keyCode == ENTER && estado.equals("run")||
       keyCode == ENTER && estado.equals("trans")) {
-     clic.play();
+      s.trigger();
       estado = ("inicio");
     }
     //evento F reparar portal
     if ( key == 'f' && estado.equals("futuro") || key == 'F' && estado.equals("futuro") ) {
-      clic.play();
+      s.trigger();
       estado = "fix";
     }
 
     //evento S quedarte en el 2020
     if ( key == 'S' && estado.equals("futuro") || key == 's' && estado.equals("futuro") ) {
-      clic.play();
+      s.trigger();
       estado = "stay";
     }
 
     //evento R correr
     if ( key == 'R' && estado.equals("stay") || key == 'r' && estado.equals("stay") ) {
-      clic.play();
+      s.trigger();
       estado = "run";
 
       //evento T transbordador
     } else if ( key == 'T' && estado.equals("stay") || key == 't' && estado.equals("stay") ) {
-      clic.play();
+      s.trigger();
       estado = "trans";
     }
   }

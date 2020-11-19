@@ -43,8 +43,8 @@ class Virus {
       x = ancho/2;
       dx = -dx;
     }
-    if (y >(height - (170 + alto/2))) {  //abajo
-      y = height - (170 + alto/2);
+    if (y >(height - (height * 0.283 + alto/2))) {  //abajo
+      y = height - (height * 0.283 + alto/2);
       dy= -dy;
     } else if (y < alto/2) {  //arriba
       y = alto/2;
@@ -54,8 +54,7 @@ class Virus {
 
   void desaparecer(Mira puntero) {
 
-    //float d = dist (x, y, puntero.x, puntero.y );
-    // desaparece el virus que fue tocado por el muose 
+    // desaparece el virus que fue tocado por el mouse 
     if ( puntero.x < x + ancho/2 && puntero.x > x - ancho/2 && puntero.y > y - alto/2 && puntero.y < y + alto/2 ) {
 
       // ayudas de consola
@@ -66,17 +65,11 @@ class Virus {
     }
   }
 
-void perder (Mira puntero, Juego jugador) {
+  void perder (Mira puntero, Juego jugador) {
 
     if ( puntero.x < x + ancho/2 && puntero.x > x - ancho/2 && puntero.y > y - alto/2 && puntero.y < y + alto/2 ) {
 
       jugador.estado = "perder";
-      
-      // ayudas de consola
-      println("matar");
-    } else {
-      println("vivir");
     }
   }
-
 }

@@ -3,7 +3,9 @@ class Mira {
   float tam;
   PImage [] mira = new PImage [2];
 
-   Mira() {
+   // --------------------------CONTRUCTOR---------------------------
+  
+  Mira() {
 
     // inicializar posicion y tamaño mediante parámetros
     imageMode(CENTER);
@@ -15,36 +17,21 @@ class Mira {
     tam = 100;
   }
 
+   // --------------------------METODOS (funciones)---------------------------
+  
   void dibujar(AudioSample shot) {
 
     if (mousePressed == true) {
-       shot.play();
+      shot.trigger();
       image( mira[1], mouseX, mouseY, tam, tam);
       x = mouseX;
       y = mouseY;
-     
     } else {
 
       image( mira[0], mouseX, mouseY, tam, tam);
-      
+
       x = mouseX;
       y = mouseY;
     }
   }
-
-  // segundo modo de avaluar colisiones ------ peligroso, no jugar con el por fa 
-  
-  //void tirar(Virus[] objetivo) {
-
-  //  for ( int o = 0; o < objetivo.length; o++ ) {
-
-  //    float d = dist(x, y, objetivo[o].x, objetivo[o].y);
-
-  //    println (o, d);
-
-  //    //strokeWeight(10);
-  //    //fill(#05EAFC);
-  //    circle(objetivo[o].x, objetivo[o].y, tam);
-  //  }
-  //}
 }    

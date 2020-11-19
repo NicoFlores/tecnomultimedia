@@ -38,32 +38,8 @@ class Contador {
     mensaje[2] ="FALLASTE";
   }
 
-  // DEBUG---------------------------------------------------------------
-  //void contar () {
-  //  n = 0;
-  //  int m = 0;
-  //  for (int i = 0; i < 5; i++) {
-  //    println("I= " + i);
-  //    if (juego.verde[i].dibujar == true) {
-  //      m = m+1 ;
-  //      println("Incrementé m, m= " + m);
-  //    } else if (juego.verde[i].dibujar == false){
-  //      m = m-1 ;
-  //      println("Decrementé m, m= " + m);
-  //    }
+  // --------------------------METODOS (funciones)---------------------------
 
-  //    if (juego.rojo[i].dibujar == true) {
-  //      n = n+1 ;
-  //      println("Incrementé n, n= " + n);
-  //    } else if (juego.rojo[i].dibujar == false){
-  //      n = n-1 ;
-  //      println("Incrementé n, n= " + n);
-  //    }
-  //   println("virus"+ (n + m));  
-  //}
-  //}
-  
-  
   void contar () {
     int r = 0;
     int v = 0;
@@ -71,29 +47,29 @@ class Contador {
 
       if (aventura.juego.verde[i].dibujar == true) {
         v = v+1 ;
-      } else if (aventura.juego.verde[i].dibujar == false){
+      } else if (aventura.juego.verde[i].dibujar == false) {
         v = v-1 ;
       }
 
       if (aventura.juego.rojo[i].dibujar == true) {
         r = r+1 ;
-      } else if (aventura.juego.rojo[i].dibujar == false){
+      } else if (aventura.juego.rojo[i].dibujar == false) {
         r = r-1 ;
       }
-     n = (r + v);
-     println("virus"+ n);  
+      n = (r + v);
+      println("virus"+ n);
+    }
   }
-  }
-  
+
   void dibujar (int texto, int accion) {
     noStroke(); 
     fill(consola); 
-    rect(width * 0.016, height * 0.73, width-40,  height /100 * 23, 10); 
+    rect(width * 0.016, height * 0.73, width-40, height /100 * 23, 10); 
     //texto en consola 
     textAlign(LEFT, TOP); 
     textFont(letras, 25); 
     fill(#0CF037); 
-    text(saludo[texto],width * 0.016 + 5, height * 0.73 + 5, width-35, height-5); 
+    text(saludo[texto], width * 0.016 + 5, height * 0.73 + 5, width - (width * 0.0625), height-25); 
     textAlign(RIGHT, BOTTOM); 
     fill(#0CF037); 
     text(orden[accion], width * 0.016 + width - (width /100 * 5), height * 0.73 + (height /100 * 23) -5 );
