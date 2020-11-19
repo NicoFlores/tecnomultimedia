@@ -202,7 +202,7 @@ class Aventura {
 
   //METODOS DE AVENTURA 
 
-  void dibujar (AudioSample shot) {
+  void dibujar () {
     //pantalla (int imagenBase, float tinte, float opacidadTinte, float posXConsola, float posYConsola,int textoConsola, int orden)
     //botonCuadrado (float xBoton, float yBoton, float ancho, float alto)
     //BotonCuadroTexto (String texto, int letra, int relleno, float  CBX, float CBY )
@@ -507,7 +507,7 @@ class Aventura {
     }
   }
   void teclas() {
-    juego.teclas(s);
+    juego.teclas(shot);
     if (keyCode == ENTER && estado.equals("rayos")||keyCode == ENTER && estado.equals("AC")||keyCode == ENTER && estado.equals("DC")||
       keyCode == ENTER && estado.equals("Bombilla")||keyCode == ENTER && estado.equals("fix")||keyCode == ENTER && estado.equals("run")||
       keyCode == ENTER && estado.equals("trans")) {
