@@ -506,17 +506,17 @@ class Aventura {
       estado = ("rayos");
     }
   }
-  void teclas(AudioSample s) {
+  void teclas() {
     juego.teclas(s);
     if (keyCode == ENTER && estado.equals("rayos")||keyCode == ENTER && estado.equals("AC")||keyCode == ENTER && estado.equals("DC")||
       keyCode == ENTER && estado.equals("Bombilla")||keyCode == ENTER && estado.equals("fix")||keyCode == ENTER && estado.equals("run")||
       keyCode == ENTER && estado.equals("trans")) {
-      s.trigger();
+      clic.play();
       estado = ("inicio");
     }
     //evento F reparar portal
     if ( key == 'f' && estado.equals("futuro") || key == 'F' && estado.equals("futuro") ) {
-      s.trigger();
+      clic.play();
       estado = "fix";
     }
 
